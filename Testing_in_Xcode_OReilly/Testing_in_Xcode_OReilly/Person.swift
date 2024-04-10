@@ -19,4 +19,11 @@ class Person {
         }
         return nil
     }
+    
+    func checkPassword() -> String? {
+        if password == "" {
+            return "Missing password"
+        }
+        return nil
+    }
 }
