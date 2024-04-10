@@ -29,9 +29,9 @@ class ViewController: UIViewController {
     @IBAction func registerUser(_ sender: Any) {
         
         errorLabel.text = ""
-        
-        if (!Utilities.isValidEmail(emailTextField.text ?? "")) {
-            errorLabel.text = "Incorrect email"
+                
+        if let emailCheck = checkEmail(emailTextField.text ?? "") {
+            errorLabel.text = emailCheck
             return
         }
         
@@ -54,6 +54,13 @@ class ViewController: UIViewController {
             errorLabel.text = "terms not accepted"
             return
         }
+    }
+    
+    func checkEmail(_ email: String) -> String? {
+        if (!Utilities.isValidEmail(email)) {
+            return "Incorrect email"
+        }
+        return nil
     }
 }
 
