@@ -11,7 +11,7 @@ class Person {
     var email: String = ""
     var password: String = ""
     var bornYear: String = ""
-    var spproveTerms: Bool = false
+    var approveTerms: Bool = false
     
     func checkEmail() -> String? {
         if (!Utilities.isValidEmail(email)) {
@@ -37,5 +37,9 @@ class Person {
             return "Not eligible"
         }
         return nil
+    }
+    
+    func isApproved() -> String? {
+        return approveTerms ? nil : "terms not accepted"
     }
 }

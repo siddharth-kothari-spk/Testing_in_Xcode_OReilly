@@ -70,6 +70,15 @@ final class Testing_in_Xcode_OReillyTests: XCTestCase {
         XCTAssertEqual(person?.checkAge(), "Not eligible")
     }
     
+    
+    func testApproved() throws {
+        
+        person?.approveTerms = true
+        XCTAssertNil(person?.isApproved())
+        
+        person?.approveTerms = false
+        XCTAssertNotNil(person?.isApproved())
+    }
     func testPerformanceExample() throws {
         // This is an example of a performance test case.
         self.measure {
