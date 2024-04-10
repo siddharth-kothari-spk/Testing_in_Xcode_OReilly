@@ -54,6 +54,11 @@ final class Testing_in_Xcode_OReillyTests: XCTestCase {
         XCTAssertNil(person?.checkPassword())
     }
 
+    func test_checkAge() throws {
+        person?.bornYear = ""
+        XCTAssertTrue(((person?.checkAge()) == nil))
+    }
+    
     func testPerformanceExample() throws {
         // This is an example of a performance test case.
         self.measure {

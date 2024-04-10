@@ -26,4 +26,8 @@ class Person {
         }
         return nil
     }
+    
+    func checkAge(){
+        
+    }
 }
