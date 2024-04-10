@@ -30,8 +30,8 @@ class ViewController: UIViewController {
         
         errorLabel.text = ""
                 
-        if let emailCheck = checkEmail(emailTextField.text ?? "") {
-            errorLabel.text = emailCheck
+        if !Utilities.isValidEmail(emailTextField.text ?? "") {
+            errorLabel.text = "Incorrect email"
             return
         }
         
@@ -56,11 +56,6 @@ class ViewController: UIViewController {
         }
     }
     
-    func checkEmail(_ email: String) -> String? {
-        if (!Utilities.isValidEmail(email)) {
-            return "Incorrect email"
-        }
-        return nil
-    }
+    
 }
 

@@ -11,14 +11,17 @@ import XCTest
 final class Testing_in_Xcode_OReillyTests: XCTestCase {
 
     var sut: ViewController?
+    var person: Person?
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
         sut = ViewController()
+        person = Person()
     }
 
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         sut = nil
+        person = nil
     }
 
     func test_checkEmail() throws {
@@ -27,17 +30,24 @@ final class Testing_in_Xcode_OReillyTests: XCTestCase {
         // Any test you write for XCTest can be annotated as throws and async.
         // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
         // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
-        XCTAssertNotNil(sut?.checkEmail(""))
         
-        XCTAssertNotNil(sut?.checkEmail("a"))
+        person?.email = ""
+        XCTAssertNotNil(person?.checkEmail())
+        
+        person?.email = "a"
+        XCTAssertNotNil(person?.checkEmail())
 
-        XCTAssertNotNil(sut?.checkEmail("a@"))
+        person?.email = "a@"
+        XCTAssertNotNil(person?.checkEmail())
         
-        XCTAssertNotNil(sut?.checkEmail("a@acom"))
+        person?.email = "a@acom"
+        XCTAssertNotNil(person?.checkEmail())
         
-        XCTAssertNotNil(sut?.checkEmail("@a.com"))
+        person?.email = "@a.com"
+        XCTAssertNotNil(person?.checkEmail())
         
-        XCTAssertNil(sut?.checkEmail("a@a.com"))
+        person?.email = "a@a.com"
+        XCTAssertNil(person?.checkEmail())
     }
 
     func testPerformanceExample() throws {
