@@ -27,7 +27,15 @@ class Person {
         return nil
     }
     
-    func checkAge(){
+    func checkAge() -> String? {
+        let yearNow = Calendar.current.component(.year, from: Date())
+        guard let bornYear = Int(bornYear) else {
+            return "Enter valid birth year"
+        }
         
+        if yearNow - bornYear < 18 {
+            return "Not eligible"
+        }
+        return nil
     }
 }

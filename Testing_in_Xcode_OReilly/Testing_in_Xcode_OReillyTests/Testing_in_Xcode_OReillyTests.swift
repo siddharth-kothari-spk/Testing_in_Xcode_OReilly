@@ -55,8 +55,15 @@ final class Testing_in_Xcode_OReillyTests: XCTestCase {
     }
 
     func test_checkAge() throws {
+        
         person?.bornYear = ""
-        XCTAssertTrue(((person?.checkAge()) == nil))
+        XCTAssertEqual(person?.checkAge(), "Enter valid birth year")
+        
+        person?.bornYear = "1970"
+        XCTAssertNil(person?.checkAge())
+        
+        person?.bornYear = "ABC"
+        XCTAssertEqual(person?.checkAge(), "Enter valid birth year")
     }
     
     func testPerformanceExample() throws {
