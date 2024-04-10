@@ -16,6 +16,10 @@ final class Testing_in_Xcode_OReillyTests: XCTestCase {
         // Put setup code here. This method is called before the invocation of each test method in the class.
         sut = ViewController()
         person = Person()
+        person?.email = "aa@aa.co"
+        person?.password = "pass"
+        person?.bornYear = "1988"
+        person?.approveTerms = true
     }
 
     override func tearDownWithError() throws {
@@ -27,58 +31,58 @@ final class Testing_in_Xcode_OReillyTests: XCTestCase {
     func test_checkEmail() throws {
         
         person?.email = ""
-        XCTAssertNotNil(person?.checkEmail())
+        XCTAssertNotNil(person?.checkForm())
         
         person?.email = "a"
-        XCTAssertNotNil(person?.checkEmail())
+        XCTAssertNotNil(person?.checkForm())
 
         person?.email = "a@"
-        XCTAssertNotNil(person?.checkEmail())
+        XCTAssertNotNil(person?.checkForm())
         
         person?.email = "a@acom"
-        XCTAssertNotNil(person?.checkEmail())
+        XCTAssertNotNil(person?.checkForm())
         
         person?.email = "@a.com"
-        XCTAssertNotNil(person?.checkEmail())
+        XCTAssertNotNil(person?.checkForm())
         
         person?.email = "a@a.com"
-        XCTAssertNil(person?.checkEmail())
+        XCTAssertNil(person?.checkForm())
     }
     
     func test_checkPassword() throws {
         
         person?.password = ""
-        XCTAssertNotNil(person?.checkPassword())
+        XCTAssertNotNil(person?.checkForm())
         
         person?.password = "pass"
-        XCTAssertNil(person?.checkPassword())
+        XCTAssertNil(person?.checkForm())
     }
 
     func test_checkAge() throws {
         
         person?.bornYear = ""
-        XCTAssertEqual(person?.checkAge(), "Enter valid birth year")
+        XCTAssertEqual(person?.checkForm(), "Enter valid birth year")
         
         person?.bornYear = "1970"
-        XCTAssertNil(person?.checkAge())
+        XCTAssertNil(person?.checkForm())
         
         person?.bornYear = "ABC"
-        XCTAssertEqual(person?.checkAge(), "Enter valid birth year")
+        XCTAssertEqual(person?.checkForm(), "Enter valid birth year")
         
         person?.bornYear = "2020"
-        //XCTAssertEqual(person?.checkAge(), "Enter valid birth year")
-        XCTAssertEqual(person?.checkAge(), "Not eligible")
+        XCTAssertEqual(person?.checkForm(), "Not eligible")
     }
     
     
     func testApproved() throws {
         
         person?.approveTerms = true
-        XCTAssertNil(person?.isApproved())
+        XCTAssertNil(person?.checkForm())
         
         person?.approveTerms = false
-        XCTAssertNotNil(person?.isApproved())
+        XCTAssertNotNil(person?.checkForm())
     }
+    
     func testPerformanceExample() throws {
         // This is an example of a performance test case.
         self.measure {

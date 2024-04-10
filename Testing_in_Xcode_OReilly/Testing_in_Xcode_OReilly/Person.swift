@@ -13,21 +13,15 @@ class Person {
     var bornYear: String = ""
     var approveTerms: Bool = false
     
-    func checkEmail() -> String? {
+    func checkForm() -> String? {
         if (!Utilities.isValidEmail(email)) {
             return "Incorrect email"
         }
-        return nil
-    }
-    
-    func checkPassword() -> String? {
+        
         if password == "" {
             return "Missing password"
         }
-        return nil
-    }
-    
-    func checkAge() -> String? {
+        
         let yearNow = Calendar.current.component(.year, from: Date())
         guard let bornYear = Int(bornYear) else {
             return "Enter valid birth year"
@@ -36,10 +30,9 @@ class Person {
         if yearNow - bornYear < 18 {
             return "Not eligible"
         }
-        return nil
-    }
-    
-    func isApproved() -> String? {
+        
         return approveTerms ? nil : "terms not accepted"
+        
     }
 }
+

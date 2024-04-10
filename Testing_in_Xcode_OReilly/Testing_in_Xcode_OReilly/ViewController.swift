@@ -29,31 +29,19 @@ class ViewController: UIViewController {
     @IBAction func registerUser(_ sender: Any) {
         
         errorLabel.text = ""
-                
-        if !Utilities.isValidEmail(emailTextField.text ?? "") {
-            errorLabel.text = "Incorrect email"
+        
+        var person = Person()
+        person.email = emailTextField.text!
+        person.password = passwordTextField.text!
+        person.bornYear = bornYearTextField.text!
+        person.approveTerms = approveTermsSwitch.isOn
+        
+        let errorMessage = person.checkForm()
+        
+        guard (errorMessage != nil) else {
             return
         }
-        
-        if (passwordTextField.text == "") {
-            errorLabel.text = "Missing password"
-            return
-        }
-        
-        let yearNow = Calendar.current.component(.year, from: Date())
-        guard let bornYear = Int(bornYearTextField.text!) else {
-            errorLabel.text = "Enter birth year"
-            return
-        }
-        
-        if yearNow - bornYear < 18 {
-            errorLabel.text = "Not eligible"
-        }
-        
-        if approveTermsSwitch.isOn == false {
-            errorLabel.text = "terms not accepted"
-            return
-        }
+        errorLabel.text = errorMessage
     }
     
     
